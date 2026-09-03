@@ -19,17 +19,17 @@ def fetch_forecast(latitude, longitude):
         "forecast_days": 7,
         "timezone": "UTC",
     }
-    for attempt in range(3):
+    for attempt in range(4):
         try:
             response = requests.get(url, params=params, timeout=(5, 20))
         except requests.exceptions.Timeout:
-            if attempt == 2:
+            if attempt == 3:
                 raise
             time.sleep(2 ** attempt)
             continue
 
         if response.status_code >= 500:
-            if attempt == 2:
+            if attempt == 3:
                 response.raise_for_status()
             time.sleep(2 ** attempt)
             continue

@@ -14,8 +14,8 @@ insert into city (slug, name, latitude, longitude) values
 	('hat-yai', 'Hat Yai', 7.0086, 100.4747);
 
 create table hourly_forecast (
-	city_id integer references city(city_id),
-	forecast_time_utc text,
+	city_id integer references city(city_id) not null,
+	forecast_time_utc text not null,
 	forecast_date_local text,
 	forecast_hour_local integer,
 	temperature_c real,
